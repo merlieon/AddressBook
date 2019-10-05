@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ServerSocketHandler {
@@ -15,7 +14,7 @@ public class ServerSocketHandler {
     private PrintWriter out;
     private BufferedReader in;
     private Boolean isRunning = true;
-    private List<String> addressList = new ArrayList<String>();
+    private List<String> addressList = new ArrayList<>();
 
     // Adding new server socket
     public void addNewServerSocket(int port) {
@@ -64,7 +63,7 @@ public class ServerSocketHandler {
                             break;
                         } else if (addressList.size() == i + 1){
                             out.println("");
-                            out.println("last item \n");
+                            out.println("Nothing were found \n");
                         }
                     }
                     
@@ -80,7 +79,7 @@ public class ServerSocketHandler {
 
     // Welcome text for the client
     private void WelcomeText(){
-        out.println("Welcome to the hell of doom! Please make a Choice or meet your faith");
+        out.println("Welcome to the hell of doom! Make a Choice or meet your faith");
     }
 
     // Choices for the client
