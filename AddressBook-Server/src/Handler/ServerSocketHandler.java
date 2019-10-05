@@ -5,16 +5,23 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerSocketHandler {
+
+    // Declaring variables and objects
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
     private DataOutputStream steamOut;
     private Boolean isRunning = true;
+
+    // Adding new server socket
     public void addNewServerSocket(int port) {
 
             try {
-                ServerSocket serverSocket = new ServerSocket(port);
+                // Opening connection towards client
+                serverSocket = new ServerSocket(port);
                 System.out.println("Waiting for client....");
-                Socket clientSocket = serverSocket.accept();
+                clientSocket = serverSocket.accept();
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 steamOut = new DataOutputStream(clientSocket.getOutputStream());
@@ -24,8 +31,10 @@ public class ServerSocketHandler {
             }
     }
 
+    // The main loop of the program
     private void ProgramLoop() throws IOException {
 
+        // Adding while loop to be able to run this multiple times
         while (isRunning) {
             WelcomeText();
             AddressBookChoises();
@@ -42,16 +51,19 @@ public class ServerSocketHandler {
                     out.println("case 2");
                     break;
                 case "3":
-                    out.println("case 3");
+                    serverSocket.close();
+                    clientSocket.close();
                     break;
             }
         }
     }
 
+    // Welcome text for the client
     private void WelcomeText(){
         out.println("Welcome to the hell of doom! Please make a Choice or meet your faith");
     }
 
+    // Choices for the client
     private void AddressBookChoises(){
         out.println("1. List all addresses");
         out.println("2. Search for an address");
