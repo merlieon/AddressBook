@@ -57,16 +57,17 @@ public class ServerSocketHandler {
                 case "2":
                     String search = in.readLine();
                     for (int i = 0; i < addressList.size(); i++) {
-                        if (addressList.get(i).contains(search)){
-                            out.println("");
-                            out.println(addressList.get(i) + "\n");
-                            break;
-                        } else if (addressList.size() == i + 1){
-                            out.println("");
-                            out.println("Nothing were found \n");
+                    	
+                        if (i == addressList.size()) {
+                        	break;
                         }
+                        if (addressList.get(i).toLowerCase().contains(search)){
+                            out.println("");
+                            out.println(addressList.get(i) + "\n");    
+                        } 
                     }
-                    
+                        out.println("");
+                        out.println("SEARCH DONE \n");
                     break;
                 // Closing client
                 case "3":
