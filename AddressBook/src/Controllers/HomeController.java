@@ -1,6 +1,5 @@
 package Controllers;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,13 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
+public class HomeController {
 
     @FXML
     Button displayCustomerBtn;
 
     @FXML
-    public void DisplayCustomersView(Stage stage) throws IOException {
+    public void DisplayCustomersView() throws IOException {
 
        /* Parent root = fxmlLoader.load();
         Stage stage = new Stage();
@@ -44,5 +43,4 @@ public class MainController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
 }

@@ -10,7 +10,7 @@ public class DatabaseUtility {
     }
 
     // Variables
-    private String hostname;
+    private String hostname = "192.168.2.71";
     private String username;
     private String password;
     private static Connection con;
@@ -18,7 +18,7 @@ public class DatabaseUtility {
     // Connecting to database
     public void Connection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.71/addressbook", username, password);
+            con = DriverManager.getConnection("jdbc:mysql://"+ hostname +"/addressbook", username, password);
             System.out.println("Connected");
         } catch (SQLException e) {
             System.out.println("Could not connect to database");

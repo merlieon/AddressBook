@@ -34,7 +34,7 @@ public class LoginController {
         // Opening new window if connected
         try {
             if (!DatabaseUtility.getConnection().isClosed()){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/MainView.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Views/HomeView.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setTitle("Login");
