@@ -4,8 +4,7 @@ import java.sql.*;
 public class DatabaseUtility {
 
     // Constructor
-   public DatabaseUtility(String hostname, String username, String password){
-       this.hostname = hostname;
+   public DatabaseUtility(String username, String password){
        this.username = username;
        this.password = password;
     }
@@ -19,10 +18,10 @@ public class DatabaseUtility {
     // Connecting to database
     public void Connection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://"+ hostname +"/addressbook", username, password);
+            con = DriverManager.getConnection("jdbc:mysql://192.168.2.71/addressbook", username, password);
             System.out.println("Connected");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Could not connect to database");
         }
 
     }
@@ -31,5 +30,4 @@ public class DatabaseUtility {
     public static Connection getConnection(){
         return con;
     }
-
 }
