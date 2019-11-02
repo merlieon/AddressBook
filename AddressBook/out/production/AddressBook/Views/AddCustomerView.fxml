@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+    <left>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-
-</AnchorPane>
+        <AnchorPane prefHeight="520.0" prefWidth="108.0" style="-fx-background-color: #F0F7FF;" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="520.0" prefWidth="47.0" style="-fx-background-color: #fff;">
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
+                    </effect>
+                </AnchorPane>
+                <JFXButton fx:id="displayHomeViewBtn" contentDisplay="CENTER" focusTraversable="false" layoutX="-1.0" layoutY="75.0" onAction="#DisplayHomeView" prefHeight="46.0" prefWidth="243.0" text="          Home" />
+                <FontAwesomeIcon glyphName="HOME" layoutX="14.0" layoutY="107.0" size="2em" />
+                <JFXButton fx:id="displayCustomerViewBtn" contentDisplay="CENTER" focusTraversable="false" layoutX="-1.0" layoutY="122.0" onAction="#DisplayCustomersView" prefHeight="46.0" prefWidth="243.0" text="             Display Customers" />
+                <FontAwesomeIcon glyphName="LIST" layoutX="13.0" layoutY="153.0" size="2em" />
+                <JFXButton fx:id="addCustomerViewBtn" contentDisplay="CENTER" focusTraversable="false" layoutX="1.0" layoutY="168.0" onAction="#DisplayAddCustomerView" prefHeight="46.0" prefWidth="241.0" text="              Add Customer" />
+                <FontAwesomeIcon glyphName="PLUS" layoutX="16.0" layoutY="199.0" size="2em" />
+                <JFXButton fx:id="displayDeletedViewCustomers" contentDisplay="CENTER" focusTraversable="false" layoutX="2.0" layoutY="214.0" onAction="#DisplayDeletedCustomersView" prefHeight="46.0" prefWidth="240.0" text="             Display Deleted Customers" />
+                <FontAwesomeIcon glyphName="TRASH" layoutX="16.0" layoutY="245.0" size="2em" />
+            <JFXButton fx:id="addCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="473.0" prefHeight="46.0" prefWidth="241.0" text="              Add " />
+            <FontAwesomeIcon glyphName="PLUS" layoutX="15.0" layoutY="505.0" size="2em" />
+            </children>
+            <effect>
+                <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
+            </effect>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="195.0" layoutY="112.0" text="Firstname" />
+            <TextField layoutX="195.0" layoutY="138.0" />
+            <TextField layoutX="195.0" layoutY="199.0" />
+            <Label layoutX="195.0" layoutY="173.0" text="Lastname" />
+            <Label layoutX="195.0" layoutY="235.0" text="Phonenumber" />
+            <TextField layoutX="195.0" layoutY="261.0" />
+            <Label layoutX="195.0" layoutY="295.0" text="Email" />
+            <TextField layoutX="195.0" layoutY="321.0" />
+         </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
