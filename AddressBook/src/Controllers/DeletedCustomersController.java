@@ -29,7 +29,7 @@ public class DeletedCustomersController {
         Parent root = FXMLLoader.load(getClass().getResource("/Views/CustomersView.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Login");
+        stage.setTitle("Display all customers");
         stage.setScene(scene);
         stage.show();
     }
