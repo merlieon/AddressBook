@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <left>
 
        <AnchorPane prefHeight="520.0" prefWidth="108.0" style="-fx-background-color: #F0F7FF;" BorderPane.alignment="CENTER">
@@ -25,8 +26,8 @@
                   <FontAwesomeIcon glyphName="PLUS" layoutX="16.0" layoutY="199.0" size="2em" />
                   <JFXButton fx:id="displayDeletedCustomers" contentDisplay="CENTER" focusTraversable="false" layoutX="2.0" layoutY="214.0" onAction="#DisplayDeletedCustomersView" prefHeight="46.0" prefWidth="240.0" text="             Display Deleted Customers" />
                   <FontAwesomeIcon glyphName="TRASH" layoutX="16.0" layoutY="245.0" size="2em" />
-                  <JFXButton fx:id="restoreCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="474.0" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #ff9900;" text="             Logout" />
-                  <FontAwesomeIcon glyphName="CIRCLE" layoutX="11.0" layoutY="507.0" size="2em" />
+                  <JFXButton fx:id="restoreCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="474.0" onAction="#Logout" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #ff9900;" text="             Logout" />
+                  <FontAwesomeIcon glyphName="REMOVE" layoutX="11.0" layoutY="507.0" size="2em" />
    </children>
            <effect>
                <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
@@ -36,8 +37,8 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
            <children>
-                   <JFXListView layoutX="38.0" layoutY="304.0" prefHeight="202.0" prefWidth="200.0" />
-                   <JFXListView layoutX="293.0" layoutY="304.0" prefHeight="202.0" prefWidth="200.0" />
+                   <JFXListView fx:id="listLastAddedItemsFX" layoutX="38.0" layoutY="304.0" prefHeight="202.0" prefWidth="200.0" />
+                   <JFXListView fx:id="listLastDeletedItemsFX" layoutX="293.0" layoutY="304.0" prefHeight="202.0" prefWidth="200.0" />
                    <Label layoutX="38.0" layoutY="277.0" text="Latest Added Customers" />
                    <Label layoutX="293.0" layoutY="277.0" text="Latest Deleted Customers" />
            </children>
