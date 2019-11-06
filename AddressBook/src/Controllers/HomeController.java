@@ -19,17 +19,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    // Variables
     Connection con = DatabaseUtility.getConnection();
 
+    // FXML Variables
     @FXML
     JFXListView<String> listLastAddedItemsFX;
     @FXML
     JFXListView<String> listLastDeletedItemsFX;
+
     // Displaying home view
     @FXML
     public void DisplayHomeView(ActionEvent event) throws IOException{
@@ -95,7 +97,7 @@ public class HomeController implements Initializable {
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
-            listLastAddedItems.add(rs.getString(3));
+            listLastAddedItems.add(rs.getString("firstname") +  " " + rs.getString("lastname"));
         }
         listLastAddedItemsFX.setItems(listLastAddedItems);
     }
@@ -108,7 +110,7 @@ public class HomeController implements Initializable {
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
-            listLastDeletedItems.add(rs.getString(3));
+            listLastDeletedItems.add(rs.getString("firstname") +  " " + rs.getString("lastname"));
         }
         listLastDeletedItemsFX.setItems(listLastDeletedItems);
     }
