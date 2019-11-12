@@ -35,12 +35,12 @@
         </AnchorPane>
     </left>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="CustomersTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="123.0" text="Firstname" />
-          <TableColumn prefWidth="115.0" text="Lastname" />
-            <TableColumn prefWidth="165.0" text="Phonenumber" />
-            <TableColumn prefWidth="135.0" text="Email" />
+          <TableColumn fx:id="firstnameTableColumn" prefWidth="113.0" text="Firstname" />
+          <TableColumn fx:id="lastnameTableColumn" prefWidth="94.0" text="Lastname" />
+            <TableColumn fx:id="phonenumberTableColumn" prefWidth="159.0" text="Phonenumber" />
+            <TableColumn fx:id="emailTableColumn" prefWidth="172.0" text="Email" />
         </columns>
       </TableView>
    </center>
