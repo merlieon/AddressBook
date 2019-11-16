@@ -3,22 +3,32 @@ package Models;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Customer {
+    int id;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+    private SimpleStringProperty email;
+    private SimpleStringProperty phoneNumber;
+    private LocalDateTime addedDate;
+    private LocalDateTime deletedDate;
+    private LocalDateTime restoredDate;
 
-    SimpleStringProperty firstName;
-    SimpleStringProperty lastName;
-    SimpleStringProperty email;
-    SimpleStringProperty phoneNumber;
-    Timestamp addedDate;
-    Timestamp deletedDate;
-    Timestamp restoredDate;
-
-    public Customer(String firstName, String lastName, String email, String phoneNumber){
+    public Customer(int id, String firstName, String lastName, String email, String phoneNumber){
+        this.id = id;
         this.firstName =  new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
