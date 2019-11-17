@@ -84,10 +84,6 @@ public class CustomersController implements Initializable{
         stage.show();
     }
     
-    
-    
-    
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         firstnameTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("firstName"));
@@ -103,7 +99,7 @@ public class CustomersController implements Initializable{
 
     private ObservableList<Customer> listCustomers() throws SQLException {
         ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
-        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers");
+        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers WHERE active=1");
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
@@ -117,8 +113,5 @@ public class CustomersController implements Initializable{
 
         return  listCustomers;
     }
-    
-    
-    
     
 }
