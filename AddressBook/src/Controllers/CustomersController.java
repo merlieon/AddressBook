@@ -37,8 +37,8 @@ public class CustomersController implements Initializable{
     TableColumn<Customer,String> phonenumberTableColumn;
     @FXML
     TableColumn<Customer,String> emailTableColumn;
-    
-	Connection con = DatabaseUtility.getConnection();
+
+    private Connection con = DatabaseUtility.getConnection();
 
     // Displaying home view
     @FXML
@@ -103,12 +103,13 @@ public class CustomersController implements Initializable{
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
+            int id = rs.getInt("id");
             String firstname = rs.getString("firstname");
             String lastname = rs.getString("lastname");
             String email = rs.getString("email");
             String phonenumber = rs.getString("phonenumber");
 
-            listCustomers.addAll(new Customer(firstname, lastname, email, phonenumber));
+            listCustomers.addAll(new Customer(id, firstname, lastname, email, phonenumber));
         }
 
         return  listCustomers;

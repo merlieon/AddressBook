@@ -24,13 +24,15 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     // Variables
-    Connection con = DatabaseUtility.getConnection();
+    private Connection con = DatabaseUtility.getConnection();
 
     // FXML Variables
     @FXML
     JFXListView<String> listLastAddedItemsFX;
     @FXML
     JFXListView<String> listLastDeletedItemsFX;
+    @FXML
+    JFXListView<String> listLastRestoredItemsFX;
 
     // Displaying home view
     @FXML
@@ -90,10 +92,10 @@ public class HomeController implements Initializable {
 
     // Listing the last added items
     @FXML
-    public void ListLastAddedItems() throws SQLException {
+    private void ListLastAddedItems() throws SQLException {
 
         ObservableList<String> listLastAddedItems = FXCollections.observableArrayList();
-        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers");
+        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers ORDER by added_date desc");
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
@@ -104,9 +106,9 @@ public class HomeController implements Initializable {
 
     // Listing the last deleted items
     @FXML
-    public void ListLastDeletedItems() throws SQLException {
+    private void ListLastDeletedItems() throws SQLException {
         ObservableList<String> listLastDeletedItems = FXCollections.observableArrayList();
-        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers WHERE active = 0");
+        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers WHERE active = 0 ORDER by deleted_date desc");
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
@@ -115,11 +117,25 @@ public class HomeController implements Initializable {
         listLastDeletedItemsFX.setItems(listLastDeletedItems);
     }
 
+    // Listing the last deleted items
+    @FXML
+    private void ListLastRestoredItems() throws SQLException {
+        ObservableList<String> listLastRestoredItems = FXCollections.observableArrayList();
+        PreparedStatement statm = con.prepareStatement("SELECT * FROM customers WHERE active = 1 AND restored_date IS NOT NULL ORDER by restored_date desc");
+        ResultSet rs = statm.executeQuery();
+
+        while (rs.next()){
+            listLastRestoredItems.add(rs.getString("firstname") +  " " + rs.getString("lastname"));
+        }
+        listLastRestoredItemsFX.setItems(listLastRestoredItems);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             ListLastAddedItems();
             ListLastDeletedItems();
+            ListLastRestoredItems();
         } catch (SQLException e) {
             e.printStackTrace();
         }

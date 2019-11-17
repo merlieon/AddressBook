@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 public class LoginController {
 
@@ -26,7 +25,7 @@ public class LoginController {
 
     // Sending Login request
     @FXML
-    void LoginButtonPush(ActionEvent event) throws IOException {
+    void LoginButtonPush(ActionEvent event){
 
         // Connecting towards database
         DatabaseUtility databaseUtility = new DatabaseUtility(usernameTextField.getText(), passwordTextField.getText());
@@ -51,8 +50,8 @@ public class LoginController {
         } catch (Exception e) {
             // Displaying alert box
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Login Alert");
-            alert.setContentText("Login failed. Please check your credentials.");
+            alert.setTitle("Error Alert");
+            alert.setContentText("Please check that you are running java 1.8_231");
             alert.show();
         }
     }

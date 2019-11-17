@@ -22,11 +22,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class DeletedCustomersController implements Initializable {
 
+    // FXML Variables
     @FXML
     TableView<Customer> deletedCustomersTableView;
     @FXML
@@ -38,7 +40,8 @@ public class DeletedCustomersController implements Initializable {
     @FXML
     TableColumn<Customer,String> emailTableColumn;
 
-    Connection con = DatabaseUtility.getConnection();
+    // Variables
+    private Connection con = DatabaseUtility.getConnection();
 
     // Displaying home view
     @FXML
@@ -84,8 +87,11 @@ public class DeletedCustomersController implements Initializable {
         stage.show();
     }
 
+    //Initializing method
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Adding items to Table
         firstnameTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("firstName"));
         lastnameTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("lastName"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("email"));
@@ -96,21 +102,39 @@ public class DeletedCustomersController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    // Creating a list to store all Items from database to table
     private ObservableList<Customer> listCustomers() throws SQLException {
         ObservableList<Customer> listDeletedCustomers = FXCollections.observableArrayList();
         PreparedStatement statm = con.prepareStatement("SELECT * FROM customers WHERE active = 0");
         ResultSet rs = statm.executeQuery();
 
         while (rs.next()){
+            int id = rs.getInt("id");
             String firstname = rs.getString("firstname");
             String lastname = rs.getString("lastname");
             String email = rs.getString("email");
             String phonenumber = rs.getString("phonenumber");
 
-            listDeletedCustomers.addAll(new Customer(firstname, lastname, email, phonenumber));
+            listDeletedCustomers.addAll(new Customer(id,firstname, lastname, email, phonenumber));
         }
 
         return  listDeletedCustomers;
+    }
+
+    // Restoring deleted item
+    public void RestoreCustomer() throws SQLException {
+        // Getting current date and time
+        LocalDateTime dateObj = LocalDateTime.now();
+        DateTimeFormatter dateFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatedDate = dateObj.format(dateFormatObj);
+
+        // Restoring customer and added restored_date to current date and time
+        ObservableList<Customer> selectedCustomer, allCustomers;
+        allCustomers = deletedCustomersTableView.getItems();
+        selectedCustomer = deletedCustomersTableView.getSelectionModel().getSelectedItems();
+        System.out.println(selectedCustomer.get(0).getId() + " " +selectedCustomer.get(0).getFirstName());
+        PreparedStatement statm = con.prepareStatement("UPDATE customers SET restored_date = '" + formatedDate + "', active = 1 WHERE id = " + selectedCustomer.get(0).getId());
+        statm.executeUpdate();
+        selectedCustomer.forEach(allCustomers::remove);
     }
 }
