@@ -10,7 +10,7 @@ public class DatabaseUtility {
     }
 
     // Variables
-    private String hostname = "192.168.2.71";
+    private String hostname = "90.231.149.9";
     private String username;
     private String password;
     private static Connection con;

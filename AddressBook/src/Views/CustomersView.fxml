@@ -25,17 +25,18 @@
                 <FontAwesomeIcon glyphName="PLUS" layoutX="16.0" layoutY="199.0" size="2em" />
                 <JFXButton fx:id="displayDeletedCustomersViewBtn" contentDisplay="CENTER" focusTraversable="false" layoutX="2.0" layoutY="214.0" onAction="#DisplayDeletedCustomersView" prefHeight="46.0" prefWidth="240.0" text="             Display Deleted Customers" />
                 <FontAwesomeIcon glyphName="TRASH" layoutX="16.0" layoutY="245.0" size="2em" />
-            <JFXButton fx:id="deleteCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="474.0" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #ff0000;" text="         Remove" />
+            <JFXButton fx:id="deleteCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="474.0" onAction="#deleteCustomers" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #ff0000;" text="         Remove" />
             <FontAwesomeIcon glyphName="REMOVE" layoutX="15.0" layoutY="507.0" size="2em" />
-         <JFXButton fx:id="deleteCustomerBtn1" contentDisplay="CENTER" focusTraversable="false" layoutY="428.0" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #0099ff;" text="        Edit" />
+         <JFXButton fx:id="deleteCustomerBtn1" contentDisplay="CENTER" focusTraversable="false" layoutY="428.0" onAction="#EditColumns" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #0099ff;" text="        Edit" />
          <FontAwesomeIcon layoutX="15.0" layoutY="461.0" size="2em" />
+         <JFXButton fx:id="deleteCustomerBtn11" contentDisplay="CENTER" focusTraversable="false" layoutY="382.0" onAction="#Test" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #00FF00;" text="        Save" />
             <effect>
                 <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
             </effect>
         </AnchorPane>
     </left>
    <center>
-      <TableView fx:id="CustomersTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="CustomersTableView" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="firstnameTableColumn" prefWidth="113.0" text="Firstname" />
           <TableColumn fx:id="lastnameTableColumn" prefWidth="94.0" text="Lastname" />

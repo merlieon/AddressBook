@@ -78,4 +78,9 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber.set(phoneNumber);
     }
+
+	public void setCustomerName(String newValue) {
+		// TODO Auto-generated method stub
+		
+	}
 }

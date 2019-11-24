@@ -10,8 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -90,11 +93,67 @@ public class CustomersController implements Initializable{
         lastnameTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("lastName"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("email"));
         phonenumberTableColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("phoneNumber"));
+                
         try {
             CustomersTableView.getItems().setAll(listCustomers());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    public void EditColumns(ActionEvent event) throws IOException {
+        CustomersTableView.setEditable(true);
+        firstnameTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastnameTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        phonenumberTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+    }
+    
+    @FXML
+    public void Test(ActionEvent ae) throws SQLException{
+    	CustomersTableView.setEditable(false);
+    	
+        TablePosition pos = CustomersTableView.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+        Customer item = CustomersTableView.getItems().get(row);
+        TableColumn col = pos.getTableColumn();
+        String data = (String) col.getCellObservableValue(item).getValue();
+        
+        ObservableList<Customer> selectedCustomer;
+        selectedCustomer = CustomersTableView.getSelectionModel().getSelectedItems();
+          
+        
+        if(col.getText().equals("Firstname")) {
+            PreparedStatement statm = con.prepareStatement("UPDATE customers SET firstname= '"+ data + "' WHERE id= " + selectedCustomer.get(0).getId());
+            statm.executeUpdate(); 
+        }
+        if(col.getText().equals("Lastname")) {
+        	PreparedStatement statm = con.prepareStatement("UPDATE customers SET lastname= '"+ data + "' WHERE id= " + selectedCustomer.get(0).getId());
+        	statm.executeUpdate();
+        }
+        if(col.getText().equals("Phonenumber")) {
+        	PreparedStatement statm = con.prepareStatement("UPDATE customers SET phonenumber= '"+ data + "' WHERE id= " + selectedCustomer.get(0).getId());
+        	statm.executeUpdate();
+        }
+        if(col.getText().equals("Email")) {
+        	PreparedStatement statm = con.prepareStatement("UPDATE customers SET email= '"+ data + "' WHERE id= " + selectedCustomer.get(0).getId());
+        	statm.executeUpdate();
+        }
+    }
+    
+    @FXML
+    public void deleteCustomers(ActionEvent event) throws SQLException {
+    	ObservableList<Customer> selectedCustomer, allCustomers;
+        selectedCustomer = CustomersTableView.getSelectionModel().getSelectedItems();
+        
+    	PreparedStatement statm = con.prepareStatement("UPDATE customers SET active= 0 WHERE id= " + selectedCustomer.get(0).getId());
+    	statm.executeUpdate();
+    	
+        allCustomers = CustomersTableView.getItems();
+        selectedCustomer = CustomersTableView.getSelectionModel().getSelectedItems();
+        selectedCustomer.forEach(allCustomers::remove);
     }
 
     private ObservableList<Customer> listCustomers() throws SQLException {
