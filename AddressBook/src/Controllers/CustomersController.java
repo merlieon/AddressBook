@@ -112,7 +112,7 @@ public class CustomersController implements Initializable{
     }
     
     @FXML
-    public void Test(ActionEvent ae) throws SQLException{
+    public void editCustomers(ActionEvent ae) throws SQLException{
     	CustomersTableView.setEditable(false);
     	
         TablePosition pos = CustomersTableView.getSelectionModel().getSelectedCells().get(0);

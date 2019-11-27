@@ -29,7 +29,7 @@
             <FontAwesomeIcon glyphName="REMOVE" layoutX="15.0" layoutY="507.0" size="2em" />
          <JFXButton fx:id="deleteCustomerBtn1" contentDisplay="CENTER" focusTraversable="false" layoutY="428.0" onAction="#EditColumns" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #0099ff;" text="        Edit" />
          <FontAwesomeIcon layoutX="15.0" layoutY="461.0" size="2em" />
-         <JFXButton fx:id="deleteCustomerBtn11" contentDisplay="CENTER" focusTraversable="false" layoutY="382.0" onAction="#Test" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #00FF00;" text="        Save" />
+         <JFXButton fx:id="deleteCustomerBtn11" contentDisplay="CENTER" focusTraversable="false" layoutY="382.0" onAction="#editCustomers" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #00FF00;" text="        Save" />
             <effect>
                 <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
             </effect>
