@@ -23,6 +23,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import Database.DatabaseUtility;
@@ -101,6 +103,7 @@ public class CustomersController implements Initializable{
         }
     }
     
+    //Setting cells editable
     @FXML
     public void EditColumns(ActionEvent event) throws IOException {
         CustomersTableView.setEditable(true);
@@ -108,9 +111,9 @@ public class CustomersController implements Initializable{
         lastnameTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         emailTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         phonenumberTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        
-    }
+        }
     
+    //Editing database with input from user in GUI
     @FXML
     public void editCustomers(ActionEvent ae) throws SQLException{
     	CustomersTableView.setEditable(false);
@@ -124,7 +127,6 @@ public class CustomersController implements Initializable{
         ObservableList<Customer> selectedCustomer;
         selectedCustomer = CustomersTableView.getSelectionModel().getSelectedItems();
           
-        
         if(col.getText().equals("Firstname")) {
             PreparedStatement statm = con.prepareStatement("UPDATE customers SET firstname= '"+ data + "' WHERE id= " + selectedCustomer.get(0).getId());
             statm.executeUpdate(); 
@@ -143,12 +145,18 @@ public class CustomersController implements Initializable{
         }
     }
     
+    //Deleting customers (setting active=0)
     @FXML
     public void deleteCustomers(ActionEvent event) throws SQLException {
     	ObservableList<Customer> selectedCustomer, allCustomers;
         selectedCustomer = CustomersTableView.getSelectionModel().getSelectedItems();
         
-    	PreparedStatement statm = con.prepareStatement("UPDATE customers SET active= 0 WHERE id= " + selectedCustomer.get(0).getId());
+        // Getting current date and time
+        LocalDateTime dateObj = LocalDateTime.now();
+        DateTimeFormatter dateFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatedDate = dateObj.format(dateFormatObj);
+        
+    	PreparedStatement statm = con.prepareStatement("UPDATE customers SET deleted_date = '" + formatedDate + "', active= 0 WHERE id= " + selectedCustomer.get(0).getId());
     	statm.executeUpdate();
     	
         allCustomers = CustomersTableView.getItems();
