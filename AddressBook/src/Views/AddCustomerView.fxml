@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCustomerController">
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCustomerController">
     <left>
 
         <AnchorPane prefHeight="520.0" prefWidth="108.0" style="-fx-background-color: #F0F7FF;" BorderPane.alignment="CENTER">
@@ -23,9 +26,10 @@
                 <FontAwesomeIcon glyphName="PLUS" layoutX="16.0" layoutY="199.0" size="2em" />
                 <JFXButton fx:id="displayDeletedViewCustomers" contentDisplay="CENTER" focusTraversable="false" layoutX="2.0" layoutY="214.0" onAction="#DisplayDeletedCustomersView" prefHeight="46.0" prefWidth="240.0" text="             Display Deleted Customers" />
                 <FontAwesomeIcon glyphName="TRASH" layoutX="16.0" layoutY="245.0" size="2em" />
-            <JFXButton fx:id="addCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="475.0" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #00cc00;" text="              Add " />
+            <JFXButton fx:id="addCustomerBtn" contentDisplay="CENTER" focusTraversable="false" layoutY="475.0" prefHeight="46.0" prefWidth="242.0" style="-fx-background-color: #00cc00;" text="              Add " onAction="#insertCustomer"/>
             <FontAwesomeIcon glyphName="PLUS" layoutX="15.0" layoutY="507.0" size="2em" />
             <effect>
+
                 <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
             </effect>
         </AnchorPane>
@@ -33,13 +37,13 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <Label layoutX="195.0" layoutY="112.0" text="Firstname" />
-            <TextField layoutX="195.0" layoutY="138.0" />
-            <TextField layoutX="195.0" layoutY="199.0" />
+            <TextField fx:id="txtFirstname" layoutX="195.0" layoutY="138.0" />
+            <TextField fx:id="txtLastname" layoutX="195.0" layoutY="199.0" />
             <Label layoutX="195.0" layoutY="173.0" text="Lastname" />
             <Label layoutX="195.0" layoutY="235.0" text="Phonenumber" />
-            <TextField layoutX="195.0" layoutY="261.0" />
+            <TextField fx:id="txtPhonenumber" layoutX="195.0" layoutY="261.0" />
             <Label layoutX="195.0" layoutY="295.0" text="Email" />
-            <TextField layoutX="195.0" layoutY="321.0" />
+            <TextField fx:id="txtEmail" layoutX="195.0" layoutY="321.0" />
         </AnchorPane>
     </center>
 </BorderPane>
