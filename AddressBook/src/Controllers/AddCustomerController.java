@@ -1,16 +1,33 @@
 package Controllers;
 
+import Database.DatabaseUtility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AddCustomerController {
+    private Connection con = DatabaseUtility.getConnection();
+    @FXML
+    private TextField txtFirstname;
+    @FXML
+    private TextField txtLastname;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtPhonenumber;
+
 
     // Displaying home view
     @FXML
@@ -54,5 +71,22 @@ public class AddCustomerController {
         stage.setTitle("Deleted Customer View");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public void insertCustomer(){
+        LocalDateTime dateObj = LocalDateTime.now();
+        DateTimeFormatter dateFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatedDate = dateObj.format(dateFormatObj);
+
+        try {
+            Statement stmt = con.createStatement();
+            String SQL = "insert into customers (firstname,lastname,email,phonenumber,added_date) values ('" + txtFirstname.getText() +  "','"+ txtLastname.getText()+"','"+txtEmail.getText()+"','"+txtPhonenumber.getText()+"','"+formatedDate+"')";
+
+            stmt.executeUpdate(SQL);
+            System.out.println("Inserted!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
